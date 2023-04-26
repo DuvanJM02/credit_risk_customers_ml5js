@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Getting Started with ml5.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- p5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+    <!-- ml5 -->
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+    <style>
+      #object{
+        color: blue;
+      }
+      #percent {
+        color: brown;
+      }
+    </style>
+  </head>
+
+  <body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Stray_calico_cat_near_Sagami_River-01.jpg/640px-Stray_calico_cat_near_Sagami_River-01.jpg" width="900px"crossorigin="anonymous" id="image" alt="" />
+    <h1>La imágen que está visualizando es <strong id="object"></strong> con una exacitud del <strong id="percent"></strong>%</h1>
+    <script>
+      // Initialize the Image Classifier method with MobileNet
+      const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+
+      // When the model is loaded
+      function modelLoaded() {
+        console.log("Model Loaded!");
+      }
+
+      // Make a prediction with a selected image
+      classifier.classify(document.getElementById("image"), (err, results) => {
+        console.log(results);
+        document.getElementById('object').innerText = results[0].label;
+        document.getElementById('percent').innerText = (results[0].confidence * 100).toFixed(2);
+      });
+    </script>
+  </body>
+</html>
