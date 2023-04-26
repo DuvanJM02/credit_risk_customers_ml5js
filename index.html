@@ -23,6 +23,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Stray_calico_cat_near_Sagami_River-01.jpg/640px-Stray_calico_cat_near_Sagami_River-01.jpg" width="900px"crossorigin="anonymous" id="image" alt="" />
     <h1>La imágen que está visualizando es <strong id="object"></strong> con una exacitud del <strong id="percent"></strong>%</h1>
     <script>
+      console.log('ml5 version:', ml5.version);
       // Initialize the Image Classifier method with MobileNet
       const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
 
